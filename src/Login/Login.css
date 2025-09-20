@@ -1,0 +1,155 @@
+
+/* @keyframes fade {
+    from{
+        opacity: 0;
+    }to{
+        opacity:1;
+    }
+} */
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* animation: fade 10s ease-in forwards; */
+}
+/* 
+@keyframes slide {
+    from{
+        transform:translateX(50%)
+    }to{
+        transform:translateX(0%)
+    }
+} */
+.formcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  /* animation:slide 10s ease-in forwards; */
+}
+.formdiv {
+  width:500px;
+  height: 300px;
+  background: white;
+  padding: 10px;
+  border: 3px solid green;
+  border-radius: 10px;
+}
+
+.labelstyle {
+  display: block;
+  font-weight: bold;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: green;
+  font-size: 20px;
+  pointer-events: none;
+}
+.input-icon-right {
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
+  color: gray;
+  cursor: pointer;
+}
+
+.inputstyle {
+  width: 100%;
+  height: 50px;
+  border: 2px solid green;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.inputstyle.with-icon {
+  padding-left: 38px;
+  padding-right: 35px;
+}
+
+.inputstyle:focus {
+  border: 2px solid blue;
+  border-radius: 10px;
+  outline: none;
+}
+
+.input-wrapper:focus-within .input-icon {
+  color: blue; 
+}
+
+.loginbutton {
+  width:100%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 30px;
+  border-color: green;
+  border-style: solid;
+  font-weight: bold;
+}
+
+.loginbutton:hover {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
+.h1-style{
+  color: green;
+  text-shadow: 10px;
+}
+.p-account{
+  text-align: center;
+  text-decoration-color: black;
+  font-weight: bolder;
+  font-size: 15px;
+}
+.nav-register{
+  color: red;
+  display: inline-block;
+  transition: transform 0.3s ease;
+
+}
+.nav-register:hover{
+  color: green;
+  transform: scale(1.1);
+}
+.forgotpassword{
+  text-align: center;
+  font-weight: bold;
+}
+.forgotpassword:hover{
+  text-align: center;
+  font-weight: bold;
+  color:red;
+}
+.forgotNav{
+  color:blue;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.forgotNav:hover{
+  color:red;
+  transform: scale(1.1);
+}
+.inputicon-right{
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
+  color: green;
+  cursor: pointer;
+}
+.register-checkbox-input{
+  accent-color: green;
+}

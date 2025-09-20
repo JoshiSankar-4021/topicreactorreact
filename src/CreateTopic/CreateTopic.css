@@ -1,0 +1,72 @@
+
+.topic-form-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+ .create-topic-form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 255, 100, 0.15);
+  border: 2px solid #28a745;
+} 
+
+.topic-creator-head {
+  text-align: center;
+  color: #28a745;
+  font-size: 32px;
+  margin-top: 20px;
+  text-shadow: 2px 3px 3px black;
+}
+
+.topic-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 20px;
+  font-weight: bold;
+  font-style:italic ;
+  color: #070101;
+  text-shadow: 1px 1px 1px black;
+}
+
+.topic-input {
+  width: 100%;
+  font-size: 15px;
+  width:100%;
+  height:50px;
+  border-radius: 6px;
+  border: 3px solid green;
+  color: black;
+  text-size-adjust: 10px;
+  transition: border 0.3s;
+  outline:#28a745
+}
+
+.topic-input:focus {
+  border:4px solid #28a745;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.create-button {
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 20px;
+  border-style:solid;
+  border-color: #28a745;
+  padding: 10px;
+  background-color: #edefed;
+  color:black;
+  font-size: 1;
+  font-weight: bold;
+}
+
+.create-button:hover{
+    font-weight: bold;
+    background-color: #28a745;
+    color:white;
+}

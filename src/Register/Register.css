@@ -1,0 +1,138 @@
+.register-container{
+    display: block;
+    justify-content: center;
+    justify-items: center;
+}
+
+.registerform-container{
+    border: 2px solid black;
+    width: fit-content;
+    height:auto;
+    border-radius: 1em;
+    padding:1em;
+    border-color:green;
+}
+
+.register-labelStyle{
+    display: block;
+    font-size: 20px;
+    font-weight:bold;
+}
+
+.register-inputStyle{
+    display: block;
+    font-size: 20px;
+    width: 500px;
+    height:50px;
+    border:3px solid black;
+    border-radius: 10px;
+    border-color:green;
+    padding-left: 38px;
+}
+.register-buttonstyle{
+    display: block;
+    width:100%;
+    font-size: 30evh;
+    font-weight: bold;
+    height:50px;
+    margin-top: 10px;
+    border-radius: 30px;
+    border-width: 3px;
+    border-style: solid;
+    border-color:green
+}
+.register-label-radio{
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+.register-radio-input{
+    width: 20px;
+    color:green;
+    accent-color: green;
+}
+.register-checkboxName{
+    font-size: 15px;
+    font-weight: bold;
+}
+.register-inputStyle:focus{
+    border:3px solid rgb(8, 72, 201);
+    border-radius: 25px;
+}
+.register-buttonstyle:hover{
+    background-color: green;
+    color:white;
+}
+.register-title{
+    text-align: center;
+    color:green;
+}
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: green;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.select-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.register-inputStyle.with-left-icon {
+  padding-left: 38px;
+  padding-right: 35px;
+  width:100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: white;
+  background-image: none;
+}
+.select-icon {
+  position: absolute;
+  left: 10px;
+  color: green;
+  font-size: 20px;
+  pointer-events: none;
+}
+.select-arrow {
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+  color: green;
+  pointer-events: none;
+}
+.input-wrapper:focus-within .input-icon {
+  color: blue;
+}
+
+.select-wrapper:focus-within .select-icon,
+.select-wrapper:focus-within .select-arrow {
+  color: blue;
+}
+
+.register-had-account{
+    text-align: center;
+    font-weight: bold;
+}
+.login-navstyle{
+    color: red;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+.login-navstyle:hover{
+    color:green;
+    transform: scale(1.1);
+}
