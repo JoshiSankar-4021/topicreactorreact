@@ -16,12 +16,15 @@ function App() {
   const hideNavbars=['/','/Register'];
   const shouldHideNavbars=hideNavbars.includes(location.pathname);
   return (
-   <>
+  <>
     {!shouldHideNavbars && <Navbar/>}
     {!shouldHideNavbars && (<div>
-      <button className="logout-button" onClick={()=>{navigate('/')}}>Logout</button>
+      <button className="logout-button" onClick={()=>{
+        sessionStorage.clear();
+        alert("Log Out Sucessful");
+        navigate('/')}}>Logout</button>
     </div>)}
-   <Routes>
+  <Routes>
       <Route path='/' element={<Login/>}/>
       <Route path='/Register' element={<Register/>}/>
       <Route path='/Allusers' element={<AllUsers/>}/>
@@ -29,8 +32,8 @@ function App() {
       <Route path='/MyContent' element={<MyContent/>}/>
       <Route path='/CreateTopic' element={<CreateTopic/>}/>
       <Route path='/Topics' element={<Topics/>}/>
-   </Routes>
-   </>
+  </Routes>
+  </>
   );
 }
 
