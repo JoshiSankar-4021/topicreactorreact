@@ -1,160 +1,231 @@
 import './Register.css';
 import { NavLink } from 'react-router-dom';
-import {} from 'react-icons';
-import { MdMail,MdLock,MdLocationOn,MdPhoneAndroid} from 'react-icons/md';
-import { FaGraduationCap,FaChevronDown,FaRegUser } from 'react-icons/fa';
-import { useState } from 'react';
+import { MdMail, MdLock, MdLocationOn, MdPhoneAndroid } from 'react-icons/md';
+import { FaGraduationCap, FaChevronDown, FaRegUser } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 
+function Register() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [education, setEducation] = useState([]);
+  const [formdata, setFormdata] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    retypepassword: "",
+    address: "",
+    gender: "",
+    phone: "",
+    education: "" // Keep as string for select
+  });
 
-function Register(){
-        const [showPassword, setShowPassword] = useState(false);
-    
-    return(
-        <div className="register-container">
-            <h1 className='register-title'>Register</h1>
-            <div className="registerform-container">
-                <form>
-                    <label className="register-labelStyle">First Name</label>
-                    <div className='input-wrapper'>
-                    <FaRegUser  className='input-icon'/>
-                    <input type="text" className="register-inputStyle"/>
-                    </div>
-                
-                    <label className="register-labelStyle">Last Name</label>
-                    <div className='input-wrapper'>
-                    <FaRegUser className='input-icon'/>
-                    <input type="text" className="register-inputStyle"/>
-                    </div>
-                    
-                    <label className="register-labelStyle">EMAIL</label>
-                    <div className='input-wrapper'>
-                    <MdMail className='input-icon'/>
-                    <input type="text" className="register-inputStyle"/>
-                    </div>
+  // Fetch education options once on mount
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/User?action=geteducation`)
+      .then(res => res.json())
+      .then(json => {
+        setEducation(json.data || []);
+      })
+      .catch(err => console.error("Fetch education error:", err));
+  }, []);
 
-                    <label className="register-labelStyle">Password</label>
-                    <div className='input-wrapper'>
-                    <MdLock className='input-icon'/>
-                    <input type={showPassword?'text':'password'} className="register-inputStyle"/>
-                    {showPassword?(
-                        <IoMdEye className='inputicon-right' onClick={togglePasswordVisibility}/>):(
-                        <IoMdEyeOff className='inputicon-right' onClick={togglePasswordVisibility}/>)
-                    }
-                    </div>
+  // Generic input change handler
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormdata(prev => ({ ...prev, [name]: value }));
+  };
 
-                    <label className="register-labelStyle">Re-TypePassword</label>
-                    <div className='input-wrapper'>
-                    <MdLock className='input-icon'/>
-                    <input type={showPassword?'text':'password'} className="register-inputStyle"/>
-                    {showPassword?(
-                        <IoMdEye className='inputicon-right' onClick={togglePasswordVisibility}/>):(
-                        <IoMdEyeOff className='inputicon-right' onClick={togglePasswordVisibility}/>)
-                    }
-                    </div>
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-                    <label className="register-labelStyle">Address</label>
-                    <div className='input-wrapper'>
-                    <MdLocationOn className='input-icon'/>
-                    <textarea type="text" className="register-inputStyle"/>
-                    </div>
-                    
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-                    <label className="register-labelStyle">Eduction</label>
-                    <div className="select-wrapper">
-                    <FaGraduationCap className="select-icon" />
-                    <select className="register-inputStyle with-left-icon">
-                        <option>Select</option>
-                        <option>B-Tech</option>
-                        <option>M-Tech</option>
-                        <option>B.SC</option>
-                        <option>BCA</option>
-                        <option>MCA</option>
-                    </select>
-                    <FaChevronDown className="select-arrow"/>
-                    </div>
+    if (formdata.password !== formdata.retypepassword) {
+      alert("Passwords do not match!");
+      return;
+    }
 
-                    <label className='register-labelStyle'>Phone</label>
-                    <div className='input-wrapper'>
-                    <MdPhoneAndroid className='input-icon'/>
-                    <input className='register-inputStyle'/>
-                    </div>
+    const { retypepassword, ...payload } = formdata;
+    payload.education = payload.education ? parseInt(payload.education) : null;
 
-                    <label  className='register-labelStyle'>Gender</label>
-                    <label className='register-label-radio'>Male</label>
-                    <input  type="radio" name='gender' className='register-radio-input'/>
+    try {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/User?action=registeruser`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
 
-                    <label className='register-label-radio'>Fe-Male</label>
-                    <input type="radio" name='gender' className='register-radio-input'/>
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      const data = await res.json();
+      alert(data.message || "Registration successful");
+    } catch (err) {
+      console.error("Network error:", err);
+      alert("An error occurred: " + err.message);
+    }
+  };
 
-                    <label className="register-labelStyle">Skills</label>
-                    <table>
-                        <tr>
-                            <td>
-                            <label className='register-checkboxName'>Java</label>
-                            </td>
-                            <td>
-                            <input type="checkbox" className='register-checkbox-input'/>
-                            </td>
-                            <td>
-                            <label className='register-checkboxName'>Python</label>
-                            </td>
-                            <td>
-                            <input type="checkbox" className='register-checkbox-input'/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <label className='register-checkboxName'>Sql</label>
-                            </td>
-                            <td>
-                            <input type="checkbox" className='register-checkbox-input'/>
-                            </td>
-                            <td>
-                            <label className='register-checkboxName'>React</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" className='register-checkbox-input'/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label className='register-checkboxName'>Node</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" className='register-checkbox-input'/>
-                            </td>
-                            <td>
-                                <label className='register-checkboxName'>Java Script</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" className='register-checkbox-input'/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <label className='register-checkboxName'>Express</label>
-                            </td>
-                            <td>
-                            <input type="checkbox" className='register-checkbox-input'/>
-                            </td>
-                            <td>
-                            <label className='register-checkboxName'>Html&Css</label>
-                            </td>
-                            <td>
-                            <input type="checkbox" className='register-checkbox-input'/>
-                            </td>
-                        </tr>
-                    </table>
+  return (
+    <div className="register-container">
+      <h1 className='register-title'>Register</h1>
+      <div className="registerform-container">
+        <form onSubmit={handleSubmit}>
+          {/* First Name */}
+          <label className="register-labelStyle">First Name</label>
+          <div className='input-wrapper'>
+            <FaRegUser className='input-icon' />
+            <input
+              type="text"
+              name="firstname"
+              value={formdata.firstname}
+              onChange={handleChange}
+              className="register-inputStyle"
+              required
+            />
+          </div>
 
-                    <button className='register-buttonstyle'>Register</button>
-                    <p className='register-had-account'>Already had Account? <NavLink to='/' className='login-navstyle'>Login</NavLink></p>
-                </form>
-            </div>
-        </div>
-    );
-     function togglePasswordVisibility() {
-    setShowPassword(!showPassword);
+          {/* Last Name */}
+          <label className="register-labelStyle">Last Name</label>
+          <div className='input-wrapper'>
+            <FaRegUser className='input-icon' />
+            <input
+              type="text"
+              name="lastname"
+              value={formdata.lastname}
+              onChange={handleChange}
+              className="register-inputStyle"
+              required
+            />
+          </div>
+
+          {/* Email */}
+          <label className="register-labelStyle">Email</label>
+          <div className='input-wrapper'>
+            <MdMail className='input-icon' />
+            <input
+              type="email"
+              name="email"
+              value={formdata.email}
+              onChange={handleChange}
+              className="register-inputStyle"
+              required
+            />
+          </div>
+
+          {/* Password */}
+          <label className="register-labelStyle">Password</label>
+          <div className='input-wrapper'>
+            <MdLock className='input-icon' />
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={formdata.password}
+              onChange={handleChange}
+              className="register-inputStyle"
+              required
+            />
+            {showPassword
+              ? <IoMdEye className='inputicon-right' onClick={togglePasswordVisibility} />
+              : <IoMdEyeOff className='inputicon-right' onClick={togglePasswordVisibility} />
+            }
+          </div>
+
+          {/* Re-type Password */}
+          <label className="register-labelStyle">Re-Type Password</label>
+          <div className='input-wrapper'>
+            <MdLock className='input-icon' />
+            <input
+              type={showPassword ? "text" : "password"}
+              name="retypepassword"
+              value={formdata.retypepassword}
+              onChange={handleChange}
+              className="register-inputStyle"
+              required
+            />
+          </div>
+
+          {/* Address */}
+          <label className="register-labelStyle">Address</label>
+          <div className='input-wrapper'>
+            <MdLocationOn className='input-icon' />
+            <textarea
+              name="address"
+              value={formdata.address}
+              onChange={handleChange}
+              className="register-inputStyle"
+              required
+            />
+          </div>
+
+          {/* Education */}
+          <label className="register-labelStyle">Education</label>
+          <div className="select-wrapper">
+            <FaGraduationCap className="select-icon" />
+            <select
+              name="education"
+              value={formdata.education}
+              onChange={handleChange}
+              className="register-inputStyle with-left-icon"
+              required
+            >
+              <option value="">--Select--</option>
+              {education.map((edu) => (
+                <option key={edu.eduId || edu.eduid} value={(edu.eduId || edu.eduid).toString()}>
+                  {edu.educationname}
+                </option>
+              ))}
+            </select>
+            <FaChevronDown className="select-arrow" />
+          </div>
+
+          {/* Phone */}
+          <label className='register-labelStyle'>Phone</label>
+          <div className='input-wrapper'>
+            <MdPhoneAndroid className='input-icon' />
+            <input
+              type="text"
+              name="phone"
+              value={formdata.phone}
+              onChange={handleChange}
+              className='register-inputStyle'
+              required
+            />
+          </div>
+
+          {/* Gender */}
+          <label className='register-labelStyle'>Gender</label>
+          <div className='gender-wrapper'>
+            <label className='register-label-radio'>
+              <input
+                type="radio"
+                name='gender'
+                value="M"
+                checked={formdata.gender === "M"}
+                onChange={handleChange}
+                required
+              /> Male
+            </label>
+            <label className='register-label-radio'>
+              <input
+                type="radio"
+                name='gender'
+                value="F"
+                checked={formdata.gender === "F"}
+                onChange={handleChange}
+                required
+              /> Female
+            </label>
+          </div>
+
+          {/* Submit */}
+          <button type="submit" className='register-buttonstyle'>Register</button>
+          <p className='register-had-account'>
+            Already have an account? <NavLink to='/' className='login-navstyle'>Login</NavLink>
+          </p>
+        </form>
+      </div>
+    </div>
+  );
 }
-}
+
 export default Register;
