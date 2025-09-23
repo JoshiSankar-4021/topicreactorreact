@@ -1,8 +1,58 @@
 import './MyContent.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 function MyContent(){
     const [showUpdateTopic,setShowUpdateTopic]=useState(true);
     const [showUpdateComment,setShowUpdateComment]=useState(false)
+    const [comments,setComments]=useState([]);
+    const [topics,setTopics]=useState([]);
+    const userid=sessionStorage.getItem("userid");
+    
+    useEffect(() => {
+    if (showUpdateComment) {
+        fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/api/Comment?action=comments_by_commentedby&commentedby=${userid}`
+        )
+        .then((res) => {
+            if (!res.ok) {
+            throw new Error("Failed to fetch comments");
+            }
+            return res.json();
+        })
+        .then((data) => {
+            if (data?.comments) {
+            setComments(data.comments);
+            }
+        })
+        .catch((err) => console.error("Error fetching comments:", err));
+    }
+    }, [showUpdateComment, userid]); 
+
+    useEffect(() => {
+    console.log("Updated comments:", comments);
+    }, [comments]);
+
+    useEffect(()=>{
+        if(showUpdateTopic){
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/api/Topic?action=gettopicbyuserid&createdby=${userid}`)
+            .then((res)=>{
+                if(!res.ok){
+                    throw new Error("Failed to fetch topics");
+                }
+                return res.json();
+            }).then((data)=>{
+                if(data?.topics){
+                    setTopics(data.topics);
+                }
+            })
+        }
+    },[showUpdateTopic,userid]);
+
+    useEffect(()=>{
+        console.log("Updated Topics:", topics);
+    },[topics]);
+
+
+    
     return(
         <div>
             <h1 className="h1-my-content">Mycontent</h1>
@@ -34,13 +84,17 @@ function MyContent(){
                                     <th className="th-topics">Update</th>
                                     <th className="th-topics">Delete</th>
                                 </tr>
-                                <tr className="tr-topics">
-                                    <td className="td-topics">1</td>
-                                    <td className="td-topics">Laptop</td>
-                                    <td className="td-topics">to buy new laptop</td>
+                                {
+                                    topics.map((topic)=>(
+                                    <tr className="tr-topics">
+                                    <td className="td-topics">{topic.topicid}</td>
+                                    <td className="td-topics">{topic.topic}</td>
+                                    <td className="td-topics">{topic.reason}</td>
                                     <td className="td-topics"><button className="td-button-update">Update</button></td>
                                     <td className="td-topics"><button className="td-button-delete">Delete</button></td>
                                 </tr>
+                                    ))
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -64,13 +118,17 @@ function MyContent(){
                                     <th className="th-comments">Update</th>
                                     <th className="th-comments">Delete</th>
                                 </tr>
-                                <tr className="tr-comments">
-                                    <td className="td-comments">1</td>
-                                    <td className="td-comments">Laptop</td>
-                                    <td className="td-comments">comment1</td>
+                                {
+                                    comments.map((comment)=>(
+                                    <tr className="tr-comments">
+                                    <td className="td-comments">{comment.commentid}</td>
+                                    <td className="td-comments">{comment.topic}</td>
+                                    <td className="td-comments">{comment.comment}</td>
                                     <td className="td-comments"><button className="td-button-comment-update">Update</button></td>
                                     <td className="td-comments"><button className="td-button-comment-delete">Delete</button></td>
                                 </tr>
+                                    ))
+                                }
                             </tbody>
                         </table>
                     </div>

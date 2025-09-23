@@ -20,6 +20,7 @@
 .topic-container{
     display:flex;
     justify-content: center;
+    margin-top: 30px;
 }
 
 .comment-topics {
@@ -64,9 +65,9 @@
     margin:10px;
 }
 
-.comments-div.hidden{
+/* .comments-div.hidden{
     display:none;
 }
 .comments-div.visible{
     display:block;
-}
+} */

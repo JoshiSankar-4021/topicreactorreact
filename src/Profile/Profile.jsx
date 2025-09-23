@@ -17,7 +17,6 @@
         education: ""
     });
 
-    // Fetch profile from backend
     useEffect(() => {
         const userId = sessionStorage.getItem("userid");
         if (userId) {
@@ -25,16 +24,15 @@
             .then((res) => res.json())
             .then((data) => {
             if (data?.data) {
-                // Check if backend returns array or single object
                 const profile = Array.isArray(data.data) ? data.data[0] : data.data;
                 setProfiledata(profile);
+                console.log(profiledata);
             }
             })
             .catch((err) => console.error("Error fetching profile:", err));
         }
     }, []);
 
-    // Update state when user types
     const handleChange = (e) => {
         const { name, value } = e.target;
         setProfiledata((prev) => ({
@@ -43,7 +41,6 @@
         }));
     };
 
-    // Submit updated profile
     const handleUpdate = async (e) => {
         e.preventDefault();
         const userId = sessionStorage.getItem("userid");
@@ -54,7 +51,7 @@
         const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/User?action=updateprofile&userid=${userId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(profiledata) // send full profile or only changed fields
+            body: JSON.stringify(profiledata)
         });
 
         const data = await res.json();
@@ -73,28 +70,25 @@
         <h1 className="register-title">Profile</h1>
         <div className="registerform-container">
             <form onSubmit={handleUpdate}>
-            {/* First Name */}
+
             <label className="register-labelStyle">First Name</label>
             <div className="input-wrapper">
                 <FaRegUser className="input-icon" />
                 <input type="text" name="firstname" value={profiledata.firstname} onChange={handleChange} className="register-inputStyle" />
             </div>
 
-            {/* Last Name */}
             <label className="register-labelStyle">Last Name</label>
             <div className="input-wrapper">
                 <FaRegUser className="input-icon" />
                 <input type="text" name="lastname" value={profiledata.lastname} onChange={handleChange} className="register-inputStyle" />
             </div>
 
-            {/* Email */}
             <label className="register-labelStyle">Email</label>
             <div className="input-wrapper">
                 <MdMail className="input-icon" />
                 <input type="text" name="email" value={profiledata.email} onChange={handleChange} className="register-inputStyle" />
             </div>
 
-            {/* Password */}
             <label className="register-labelStyle">Password</label>
             <div className="input-wrapper">
                 <MdLock className="input-icon" />
@@ -106,21 +100,18 @@
                 )}
             </div>
 
-            {/* Re-Type Password */}
             <label className="register-labelStyle">Re-Type Password</label>
             <div className="input-wrapper">
                 <MdLock className="input-icon" />
                 <input type={showPassword ? "text" : "password"} name="retypepassword" value={profiledata.retypepassword} onChange={handleChange} className="register-inputStyle" />
             </div>
 
-            {/* Address */}
             <label className="register-labelStyle">Address</label>
             <div className="input-wrapper">
                 <MdLocationOn className="input-icon" />
                 <textarea name="address" value={profiledata.address} onChange={handleChange} className="register-inputStyle" />
             </div>
 
-            {/* Education */}
             <label className="register-labelStyle">Education</label>
             <div className="select-wrapper">
                 <FaGraduationCap className="select-icon" />
@@ -134,14 +125,12 @@
                 <FaChevronDown className="select-arrow" />
             </div>
 
-            {/* Phone */}
             <label className="register-labelStyle">Phone</label>
             <div className="input-wrapper">
                 <MdPhoneAndroid className="input-icon" />
                 <input type="text" name="phone" value={profiledata.phone} onChange={handleChange} className="register-inputStyle" />
             </div>
 
-            {/* Gender */}
             <label className="register-labelStyle">Gender</label>
             <label className="register-label-radio">Male</label>
             <input type="radio" name="gender" value="Male" checked={profiledata.gender === "Male"} onChange={handleChange} className="register-radio-input" />
