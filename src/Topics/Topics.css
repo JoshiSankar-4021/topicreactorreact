@@ -1,73 +1,73 @@
-.h1-topics{
-    color: #28a745;
-    text-align: center;
-    text-shadow: 0.3rem 0.3rem 0.3rem rgba(80, 219, 68, 0.5);
-
+.h1-topics {
+  color: #28a745;
+  text-align: center;
+  text-shadow: 0.3rem 0.3rem 0.3rem rgba(80, 219, 68, 0.5);
 }
 
-.topic-div{
-    display: block;
-    border:2px solid #28a745;
-    justify-content: center;
-    justify-items: center;
-    width:300px;
-    height:auto;
-    padding:10px;
-    border-radius: 40px;
-    
+.topic-div {
+  display: block;
+  border: 2px solid #28a745;
+  justify-content: center;
+  width: 300px;
+  min-height: 200px;      /* ensures consistent height */
+  padding: 10px;
+  border-radius: 40px;
+  background: #fff;
+  box-sizing: border-box;
 }
 
-.topic-container{
-    display:flex;
-    justify-content: center;
-    margin-top: 30px;
+.topic-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 .comment-topics {
-    width: 250px;
-    height: 80px;
-    border-radius: 30px;
-    border: 2px solid #28a745;
-    box-shadow: 0.3rem 0.2rem 0.3rem black;
-    transition: all 0.3s ease; 
+  width: 250px;
+  height: 80px;
+  border-radius: 30px;
+  border: 2px solid #28a745;
+  box-shadow: 0.3rem 0.2rem 0.3rem black;
+  transition: all 0.3s ease;
 }
 
 .comment-topics:focus {
-    border-color: #28a745;
-    box-shadow: 0.3rem 0.3rem 0.3rem green;
-    outline: none; 
-}
-.topics-button{
-    margin-top: 10px;
-    margin-left:15px;
-    border-radius: 10px;
-    width:90px;
-    height:50px;
-    border-color: #28a745;
-    color:black;
-    font-weight: bold;
-    border-style:solid;
-    transition: all 0.3s ease;
+  border-color: #28a745;
+  box-shadow: 0.3rem 0.3rem 0.3rem green;
+  outline: none;
 }
 
-.topics-button:hover{
-    color: white;
-    background-color: #28a745;
-    box-shadow: 0.3rem 0.2em 0.3em black;
-    transform:scale(1.01);
+.topics-button {
+  margin-top: 10px;
+  margin-left: 15px;
+  border-radius: 10px;
+  width: 90px;
+  height: 50px;
+  border-color: #28a745;
+  color: black;
+  font-weight: bold;
+  border-style: solid;
+  transition: all 0.3s ease;
 }
 
-.comments-div{
-    border:2px solid #28a745;
-    border-radius: 10px;
-    font-weight: bold;
-    width:100%;
-    margin:10px;
+.topics-button:hover {
+  color: white;
+  background-color: #28a745;
+  box-shadow: 0.3rem 0.2em 0.3em black;
+  transform: scale(1.01);
 }
 
-/* .comments-div.hidden{
-    display:none;
+.comments-div {
+  margin-top: 10px;
+       
 }
-.comments-div.visible{
-    display:block;
-} */
+
+.comment-box {
+  background: #fff;
+  border: 2px solid green;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  word-wrap: break-word; 
+}

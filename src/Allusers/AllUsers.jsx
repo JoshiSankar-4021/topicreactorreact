@@ -1,6 +1,25 @@
 import './AllUsers.css'
 import { MdSearch } from 'react-icons/md';
+import { useEffect,useState } from 'react';
 function AllUsers(){
+    const [users,setUsers]=useState([]);
+  
+    useEffect(() => {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/User?action=getallusers`)
+    .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch users");
+        return res.json();
+    })
+    .then((data) => {
+        if (data?.users) {
+            setUsers(data.users);
+            console.log(data.users);
+            console.log(users);
+        }
+    })
+    .catch((err) => console.error("Error fetching users:", err));
+}, []);
+
     return(
     <div>
         <h1 className="h1-allusers">ALL USERS</h1>
@@ -23,9 +42,6 @@ function AllUsers(){
                         Last Name
                     </th>
                     <th className="th-allusers">
-                        DOB
-                    </th>
-                    <th className="th-allusers">
                         Email
                     </th>
                     <th className="th-allusers">
@@ -35,15 +51,20 @@ function AllUsers(){
                         Delete
                     </th>
                 </tr>
-                <tr className="tr-allusers">
-                    <td className="td-allusers">1</td>
-                    <td className="td-allusers">Joshi</td>
-                    <td className="td-allusers">Sankar</td>
-                    <td className="td-allusers">15/11/1999</td>
-                    <td className="td-allusers">joshisankar5051@gmail.com</td>
+                {
+                    users.map(
+                        (user)=>(
+                    <tr className="tr-allusers">
+                    <td className="td-allusers">{user.userid}</td>
+                    <td className="td-allusers">{user.firstname}</td>
+                    <td className="td-allusers">{user.lastname}</td>
+                    <td className="td-allusers">{user.email}</td>
                     <td className="td-allusers"><button className="button-edit-allusers">Edit</button></td>
                     <td className="td-allusers"><button className="button-delete-allusers">Delete</button></td>
                 </tr>
+                        )
+                    )
+                }
             </table>
         </form>
     </div>
