@@ -51,7 +51,29 @@ function MyContent(){
         console.log("Updated Topics:", topics);
     },[topics]);
 
-
+    function DeleteTopic(topicid){
+        console.log(topicid);
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/Topic?action=delete_topic&topicid=${topicid}`, {
+        method: "DELETE",
+    })
+    .then((res) => {
+        if (!res.ok) {
+            throw new Error("Failed to delete topic");
+        }
+        return res.json();
+    })
+    .then((data) => {
+        console.log(data.message);
+        alert(data.message);
+        // update UI without reload
+        setTopics((prev) => prev.filter(t => t.topicid !== topicid));
+    })
+    .catch((err) => {
+        console.error("Error deleting topic:", err);
+        alert("Error deleting topic");
+    });
+        
+    }
     
     return(
         <div>
@@ -91,7 +113,7 @@ function MyContent(){
                                     <td className="td-topics">{topic.topic}</td>
                                     <td className="td-topics">{topic.reason}</td>
                                     <td className="td-topics"><button className="td-button-update">Update</button></td>
-                                    <td className="td-topics"><button className="td-button-delete">Delete</button></td>
+                                    <td className="td-topics"><button onClick={()=>{DeleteTopic(topic.topicid)}} className="td-button-delete">Delete</button></td>
                                 </tr>
                                     ))
                                 }

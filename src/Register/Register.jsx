@@ -17,10 +17,9 @@ function Register() {
     address: "",
     gender: "",
     phone: "",
-    education: "" // Keep as string for select
+    education: ""
   });
 
-  // Fetch education options once on mount
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/User?action=geteducation`)
       .then(res => res.json())
@@ -30,7 +29,6 @@ function Register() {
       .catch(err => console.error("Fetch education error:", err));
   }, []);
 
-  // Generic input change handler
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormdata(prev => ({ ...prev, [name]: value }));

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./CreateTopic.css";
 
 function CreateTopic() {
+  const navigate=useNavigate();
+
   const [topicdata,setTopicdata]=useState({
     topic:"",
     reason:"",
@@ -26,7 +28,7 @@ function CreateTopic() {
     createdby:userid
 }
     
-    const res= await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/Tpoic?action=createtopic`, {
+    const res= await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/Topic?action=createtopic`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(bodydata)
@@ -36,7 +38,7 @@ function CreateTopic() {
       alert("Topic not created");
     }else{
       alert("TOPIC CREATED");
-    }
+      navigate("/Topics");    }
   }
 
   return (
