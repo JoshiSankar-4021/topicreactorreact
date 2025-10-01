@@ -20,6 +20,7 @@ useEffect(() => {
 const userId = sessionStorage.getItem("userid");
 if (userId) {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/User?action=getprofile&userid=${userId}`)
+    //http://localhost:3000/api/User?action=getprofile&userid=6
     .then((res) => res.json())
     .then((data) => {
         if (data?.data) {

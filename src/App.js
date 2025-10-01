@@ -10,6 +10,8 @@ import Navbar from './Navbar/Navbar.jsx';
 import Register from './Register/Register.jsx';
 import Login from './Login/Login.jsx';
 import { useLocation,useNavigate} from 'react-router-dom';
+import Upload from './Uploadform/UploadForm.jsx';
+import UploadForm from './Uploadform/UploadForm.jsx';
 function App() {
   const navigate=useNavigate();
   const location = useLocation();
@@ -32,6 +34,7 @@ function App() {
       <Route path='/MyContent' element={<MyContent/>}/>
       <Route path='/CreateTopic' element={<CreateTopic/>}/>
       <Route path='/Topics' element={<Topics/>}/>
+      <Route path='/Upload' element={<UploadForm/>}/>
   </Routes>
   </>
   );

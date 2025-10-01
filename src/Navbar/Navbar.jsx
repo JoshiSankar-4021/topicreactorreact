@@ -9,6 +9,7 @@ function Navbar(){
             <NavLink to='/Topics' className='Navbar-navlink'>Topics</NavLink>
             <NavLink to='/MyContent' className='Navbar-navlink'>My Content</NavLink>
             <NavLink to='/Allusers' className='Navbar-navlink'>All Users</NavLink>
+            <NavLink to='/Upload' className='Navbar-navlink'>Upload</NavLink>
             </div>
         </div>
     )
