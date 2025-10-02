@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
-import { FaHeart, FaHeartBroken, FaComment, FaShare } from "react-icons/fa";
+import { FaHeart, FaHeartBroken, FaComment, FaShare, FaRegBookmark } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
 import IconButton from "./IconButton";
@@ -265,7 +265,7 @@ export default function UploadForm() {
                 />
               )}
 
-              <div style={{ display: "flex", gap: "25px", background: "#06f31aff" }}>
+              <div style={{ display: "flex", gap: "20px", background: "#06f31aff" }}>
                 <IconButton
                   icon={FaHeart}
                   color="red"
@@ -302,13 +302,13 @@ export default function UploadForm() {
                 />
                 <p style={{ color: "black", fontWeight: "bold" }}>{image.sharecount}</p>
 
-                {/* <IconButton
-                  icon={MdDelete}
+                <IconButton
+                  icon={FaRegBookmark}
                   color="black"
                   size={20}
-                  onClick={() => alert("Deleted!")}
-                  title="Delete"
-                /> */}
+                  onClick={() => alert("Save!")}
+                  title="Save"
+                />
               </div>
             </div>
           ))
