@@ -1,51 +1,43 @@
-
-/* @keyframes fade {
-    from{
-        opacity: 0;
-    }to{
-        opacity:1;
-    }
-} */
 .center-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* animation: fade 10s ease-in forwards; */
+  min-height: 100vh;
+  padding: 15px; /* space for smaller screens */
+  box-sizing: border-box;
 }
-/* 
-@keyframes slide {
-    from{
-        transform:translateX(50%)
-    }to{
-        transform:translateX(0%)
-    }
-} */
+
 .formcontainer {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: left;
-  /* animation:slide 10s ease-in forwards; */
+  width: 100%;
 }
+
 .formdiv {
-  width:500px;
-  height: 300px;
+  width: 100%;
+  max-width: 500px; /* limit for large screens */
   background: white;
-  padding: 10px;
+  padding: 20px;
   border: 3px solid green;
   border-radius: 10px;
+  box-sizing: border-box;
+  height: auto; /* dynamic height */
 }
 
 .labelstyle {
   display: block;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 .input-icon {
@@ -57,7 +49,9 @@
   font-size: 20px;
   pointer-events: none;
 }
-.input-icon-right {
+
+.input-icon-right,
+.inputicon-right {
   position: absolute;
   right: 10px;
   font-size: 20px;
@@ -91,65 +85,100 @@
 }
 
 .loginbutton {
-  width:100%;
+  width: 100%;
   height: 50px;
   margin-top: 10px;
   border-radius: 30px;
-  border-color: green;
-  border-style: solid;
+  border: 2px solid green;
   font-weight: bold;
+  background: white;
+  transition: background 0.3s, color 0.3s;
 }
 
 .loginbutton:hover {
   background-color: green;
   color: white;
-  font-weight: bold;
 }
-.h1-style{
+
+.h1-style {
   color: green;
-  text-shadow: 10px;
-}
-.p-account{
   text-align: center;
-  text-decoration-color: black;
+  margin-bottom: 15px;
+}
+
+.p-account {
+  text-align: center;
   font-weight: bolder;
   font-size: 15px;
 }
-.nav-register{
+
+.nav-register {
   color: red;
   display: inline-block;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.nav-register:hover {
+  color: green;
+  transform: scale(1.1);
+}
 
-}
-.nav-register:hover{
-  color: green;
-  transform: scale(1.1);
-}
-.forgotpassword{
+.forgotpassword {
   text-align: center;
   font-weight: bold;
+  margin-top: 10px;
 }
-.forgotpassword:hover{
-  text-align: center;
-  font-weight: bold;
-  color:red;
+.forgotpassword:hover {
+  color: red;
 }
-.forgotNav{
-  color:blue;
+
+.forgotNav {
+  color: blue;
   display: inline-block;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
-.forgotNav:hover{
-  color:red;
+.forgotNav:hover {
+  color: red;
   transform: scale(1.1);
 }
-.inputicon-right{
-  position: absolute;
-  right: 10px;
-  font-size: 20px;
-  color: green;
-  cursor: pointer;
-}
-.register-checkbox-input{
+
+.register-checkbox-input {
   accent-color: green;
+}
+
+/* ---------------- RESPONSIVE DESIGN ---------------- */
+@media (max-width: 768px) {
+  .formdiv {
+    max-width: 90%; /* shrink for tablets */
+    padding: 15px;
+  }
+  .inputstyle {
+    font-size: 13px;
+    height: 45px;
+  }
+  .loginbutton {
+    height: 45px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formdiv {
+    max-width: 100%;
+    padding: 10px;
+    border-width: 2px;
+  }
+  .h1-style {
+    font-size: 20px;
+  }
+  .inputstyle {
+    font-size: 12px;
+    height: 40px;
+  }
+  .loginbutton {
+    height: 40px;
+    font-size: 13px;
+  }
+  .p-account {
+    font-size: 13px;
+  }
 }
