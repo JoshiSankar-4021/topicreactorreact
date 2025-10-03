@@ -1,76 +1,111 @@
-.register-container{
-    display: block;
-    justify-content: center;
-    justify-items: center;
+/* ---------- Container ---------- */
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.registerform-container{
-    border: 2px solid black;
-    width: fit-content;
-    height:auto;
-    border-radius: 1em;
-    padding:1em;
-    border-color:green;
+/* ---------- Form ---------- */
+.registerform-container {
+  border: 2px solid green;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 1em;
+  padding: 1em;
+  box-sizing: border-box;
+  background: #fff;
 }
 
-.register-labelStyle{
-    display: block;
-    font-size: 20px;
-    font-weight:bold;
+/* ---------- Labels ---------- */
+.register-labelStyle {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.register-inputStyle{
-    display: block;
-    font-size: 20px;
-    width: 500px;
-    height:50px;
-    border:3px solid black;
-    border-radius: 10px;
-    border-color:green;
-    padding-left: 38px;
+.register-label-radio {
+  font-size: 18px;
+  font-weight: bold;
 }
-.register-buttonstyle{
-    display: block;
-    width:100%;
-    font-size: 30evh;
-    font-weight: bold;
-    height:50px;
-    margin-top: 10px;
-    border-radius: 30px;
-    border-width: 3px;
-    border-style: solid;
-    border-color:green
+
+.register-checkboxName {
+  font-size: 15px;
+  font-weight: bold;
 }
-.register-label-radio{
-    font-size: 20px;
-    font-weight: bold;
-    
+
+/* ---------- Inputs ---------- */
+.register-inputStyle {
+  display: block;
+  font-size: 16px;
+  width: 100%;
+  max-width: 500px;
+  height: 50px;
+  border: 3px solid green;
+  border-radius: 10px;
+  padding-left: 38px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  transition: border 0.3s, border-radius 0.3s;
 }
-.register-radio-input{
-    width: 20px;
-    color:green;
-    accent-color: green;
+
+.register-inputStyle:focus {
+  border: 3px solid rgb(8, 72, 201);
+  border-radius: 25px;
+  outline: none;
 }
-.register-checkboxName{
-    font-size: 15px;
-    font-weight: bold;
+
+.register-inputStyle.with-left-icon {
+  padding-left: 38px;
+  padding-right: 35px;
 }
-.register-inputStyle:focus{
-    border:3px solid rgb(8, 72, 201);
-    border-radius: 25px;
+
+/* ---------- Radio & Checkbox ---------- */
+.register-radio-input {
+  width: 20px;
+  height: 20px;
+  accent-color: green;
+  margin-right: 5px;
 }
-.register-buttonstyle:hover{
-    background-color: green;
-    color:white;
+
+/* ---------- Buttons ---------- */
+.register-buttonstyle {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 30px;
+  border: 3px solid green;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
-.register-title{
-    text-align: center;
-    color:green;
+
+.register-buttonstyle:hover {
+  background-color: green;
+  color: white;
 }
+
+/* ---------- Title ---------- */
+.register-title {
+  text-align: center;
+  color: green;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+/* ---------- Input Icon ---------- */
 .input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .input-icon {
@@ -83,6 +118,7 @@
   pointer-events: none;
 }
 
+/* ---------- Select Dropdown ---------- */
 .select-wrapper {
   position: relative;
   display: flex;
@@ -90,16 +126,6 @@
   align-items: center;
 }
 
-.register-inputStyle.with-left-icon {
-  padding-left: 38px;
-  padding-right: 35px;
-  width:100%;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: white;
-  background-image: none;
-}
 .select-icon {
   position: absolute;
   left: 10px;
@@ -107,6 +133,7 @@
   font-size: 20px;
   pointer-events: none;
 }
+
 .select-arrow {
   position: absolute;
   right: 10px;
@@ -114,25 +141,79 @@
   color: green;
   pointer-events: none;
 }
-.input-wrapper:focus-within .input-icon {
-  color: blue;
-}
 
 .select-wrapper:focus-within .select-icon,
 .select-wrapper:focus-within .select-arrow {
   color: blue;
 }
 
-.register-had-account{
-    text-align: center;
-    font-weight: bold;
+/* ---------- Already have account ---------- */
+.register-had-account {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
 }
-.login-navstyle{
-    color: red;
-    display: inline-block;
-    transition: transform 0.3s ease;
+
+.login-navstyle {
+  color: red;
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
-.login-navstyle:hover{
-    color:green;
-    transform: scale(1.1);
+
+.login-navstyle:hover {
+  color: green;
+  transform: scale(1.1);
+}
+
+/* ---------- Responsive ---------- */
+
+/* Mobile screens */
+@media (max-width: 600px) {
+  .registerform-container {
+    padding: 0.8em;
+    width: 95%;
+  }
+
+  .register-inputStyle {
+    font-size: 14px;
+    height: 45px;
+  }
+
+  .register-buttonstyle {
+    font-size: 14px;
+    height: 45px;
+  }
+
+  .register-title {
+    font-size: 20px;
+  }
+}
+
+/* Tablet screens */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .registerform-container {
+    padding: 1em;
+    width: 90%;
+  }
+
+  .register-inputStyle {
+    font-size: 16px;
+    height: 50px;
+  }
+
+  .register-buttonstyle {
+    font-size: 16px;
+    height: 50px;
+  }
+
+  .register-title {
+    font-size: 22px;
+  }
+}
+
+/* Desktop screens */
+@media (min-width: 1025px) {
+  .registerform-container {
+    max-width: 500px;
+  }
 }
