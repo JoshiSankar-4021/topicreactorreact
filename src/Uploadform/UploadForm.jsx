@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
-import { FaHeart, FaHeartBroken, FaComment, FaShare, FaRegBookmark } from "react-icons/fa";
+import { FaHeart, FaHeartBroken, FaComment, FaShare, FaRegBookmark, FaRetweet } from "react-icons/fa";
 import IconButton from "./IconButton";
 import "./UploadForm.css";
 
@@ -59,6 +59,17 @@ export default function UploadForm() {
   };
 
   const isVideo = (url) => /\.(mp4|webm|ogg)$/i.test(url);
+
+  const formatNumber = (num) => {
+  if (num >= 1000000) {
+    return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+  }
+  if (num >= 1000) {
+    return (num / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+  }
+  return num.toString();
+};
+
 
   return (
     <div>
@@ -160,17 +171,19 @@ export default function UploadForm() {
               {/* Action Bar */}
               <div className="action-bar">
                 <IconButton icon={FaHeart} color="red" size={20} onClick={() => alert("Liked!")} title="Like" />
-                <p>{image.likescount}</p>
+                <p>{formatNumber(image.likescount)}</p>
 
                 <IconButton icon={FaHeartBroken} color="red" size={20} onClick={() => alert("Dislike!")} title="Dislike" />
-                <p>{image.dislikescount}</p>
+                <p>{formatNumber(image.dislikescount)}</p>
 
                 <IconButton icon={FaComment} color="#e90cb9ff" size={20} onClick={() => alert("Comment!")} title="Comment" />
-                <p>{image.commentscount}</p>
+                <p>{formatNumber(image.commentscount)}</p>
 
                 <IconButton icon={FaShare} color="black" size={20} onClick={() => alert("Shared!")} title="Share" />
-                <p>{image.sharecount}</p>
+                <p>{formatNumber(image.sharecount)}</p>
 
+                <IconButton icon={FaRetweet} color="black" size={20} onClick={() => alert("Save!")} title="Save" />
+                <p>{formatNumber(image.repost)}</p>
                 <IconButton icon={FaRegBookmark} color="black" size={20} onClick={() => alert("Save!")} title="Save" />
               </div>
             </div>

@@ -1,154 +1,3 @@
-/* .upload-title {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.upload-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 20px;
-  max-width: 400px;
-  margin: 20px auto;
-  border-radius: 12px;
-  background: #12de3e;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.upload-input,
-.caption-input {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #4caf50;
-  font-size: 14px;
-  background: #fff;
-}
-
-.upload-btn {
-  background: #4caf50;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.upload-btn:disabled {
-  background: #a5d6a7;
-  cursor: not-allowed;
-}
-
-.upload-btn:hover:not(:disabled) {
-  background: #388e3c;
-}
-
-.gallery-title {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.gallery-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-}
-
-.gallery-card {
-  border: 2px solid #06f31a;
-  padding: 8px;
-  border-radius: 8px;
-  background: white;
-  text-align: center;
-  width: 480px;
-}
-
-.gallery-user {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #06f31a;
-  padding: 8px 12px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-}
-
-.gallery-user-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid white;
-}
-
-.gallery-user-name {
-  font-size: 18px;
-  font-weight: bold;
-  font-family: "Segoe UI", sans-serif;
-  color: black;
-  margin: 0;
-}
-
-.gallery-caption {
-  text-align: left;
-  word-break: break-word;
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.caption-toggle {
-  color: blue;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.gallery-img,
-.gallery-video {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.action-bar {
-  display: flex;
-  gap: 20px;
-  background: #06f31a;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 8px;
-  border-radius: 8px;
-}
-
-.action-bar p {
-  font-weight: bold;
-  margin: 0;
-  color: black;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.overlay-video,
-.overlay-img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 8px;
-} */
-
 /* ---------- Upload Section ---------- */
 .upload-title {
   text-align: center;
@@ -274,24 +123,35 @@
   border-radius: 8px;
 }
 
-/* Action buttons below gallery items */
+/* ---------- Action Bar ---------- */
 .action-bar {
   display: flex;
-  gap: 20px;
-  background: #06f31a;
   align-items: center;
   justify-content: flex-start;
+  background: #06f31a;
   padding: 8px;
   border-radius: 8px;
+  gap: 15px;
+  flex-wrap: nowrap;       /* keep icons in one row */
+  max-width: 100%;         /* stay inside card */
+  box-sizing: border-box;
+  overflow-x: auto;        /* allow scroll if too many buttons */
+  scrollbar-width: none;   /* hide scrollbar (Firefox) */
+}
+
+.action-bar::-webkit-scrollbar {
+  display: none;           /* hide scrollbar (Chrome/Safari) */
 }
 
 .action-bar p {
   font-weight: bold;
   margin: 0;
   color: black;
+  text-align: center;
+  flex: 0 0 40px;          /* fixed width slot for counts */
 }
 
-/* Overlay for full-screen media */
+/* ---------- Overlay for full-screen media ---------- */
 .overlay {
   position: fixed;
   top: 0;
@@ -335,7 +195,11 @@
 
   .action-bar {
     gap: 10px;
-    padding: 6px;
+    padding: 5px;
+  }
+
+  .action-bar p {
+    flex: 0 0 35px; /* slightly smaller slot for numbers on mobile */
   }
 }
 
@@ -370,4 +234,3 @@
     max-width: 480px;
   }
 }
-
