@@ -1,8 +1,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
-import { FaHeart, FaHeartBroken, FaComment, FaShare, FaRegBookmark, FaRetweet } from "react-icons/fa";
+import { FaHeart, FaHeartBroken, FaShare, FaRegBookmark, FaRetweet } from "react-icons/fa";
 import IconButton from "./IconButton";
 import "./UploadForm.css";
+import { RiRepeatLine } from "react-icons/ri";
+import { BiRepost } from "react-icons/bi";
+import { AiOutlineComment, AiOutlineHeart,AiOutlineShareAlt,AiOutlineDislike} from 'react-icons/ai';
+
 
 export default function UploadForm() {
   const [file, setFile] = useState(null);
@@ -170,19 +174,19 @@ export default function UploadForm() {
 
               {/* Action Bar */}
               <div className="action-bar">
-                <IconButton icon={FaHeart} color="red" size={20} onClick={() => alert("Liked!")} title="Like" />
+                <IconButton icon={AiOutlineHeart} color="black" size={20} onClick={() => alert("Liked!")} title="Like" />
                 <p>{formatNumber(image.likescount)}</p>
 
-                <IconButton icon={FaHeartBroken} color="red" size={20} onClick={() => alert("Dislike!")} title="Dislike" />
+                <IconButton icon={AiOutlineDislike} color="black" size={20} onClick={() => alert("Dislike!")} title="Dislike" />
                 <p>{formatNumber(image.dislikescount)}</p>
 
-                <IconButton icon={FaComment} color="#e90cb9ff" size={20} onClick={() => alert("Comment!")} title="Comment" />
+                <IconButton icon={AiOutlineComment} color="black" size={20} onClick={() => alert("Comment!")} title="Comment" />
                 <p>{formatNumber(image.commentscount)}</p>
 
-                <IconButton icon={FaShare} color="black" size={20} onClick={() => alert("Shared!")} title="Share" />
+                <IconButton icon={AiOutlineShareAlt} color="black" size={20} onClick={() => alert("Shared!")} title="Share" />
                 <p>{formatNumber(image.sharecount)}</p>
 
-                <IconButton icon={FaRetweet} color="black" size={20} onClick={() => alert("Save!")} title="Save" />
+                <IconButton icon={RiRepeatLine} size={20} onClick={() => alert("RePost!")} title="RePost" />
                 <p>{formatNumber(image.repost)}</p>
                 <IconButton icon={FaRegBookmark} color="black" size={20} onClick={() => alert("Save!")} title="Save" />
               </div>
